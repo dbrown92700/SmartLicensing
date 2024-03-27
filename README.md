@@ -33,7 +33,7 @@ Device# license smart import bootflash:ack_usage.txt
 
 ### Commerce API Documentation
 
-https://apidocs-prod.cisco.com/ \
+https://apidocs-prod.cisco.com/
 
 Upload RUM API: \
 https://apidocs-prod.cisco.com/explore;category=6083723a25042e9035f6a753;epname=6083723b25042e9035f6a779;apiendpt=6419cdf54bef6e61d5f2b11b
@@ -46,7 +46,8 @@ https://apidocs-prod.cisco.com/explore;category=6083723a25042e9035f6a753;epname=
 - Clone Repository
 > git clone https://github.com/dbrown92700/SmartLicensing
 - Use a Python venv. In the SmartLicensing directory 
-> python -m venv venv
+> python -m venv venv \
+> source venv/bin/activate
 - Install python requirements
 > pip install -r requirements.txt
 - Create an app account on the Commerce API website.
@@ -59,7 +60,7 @@ https://apidocs-prod.cisco.com/explore;category=6083723a25042e9035f6a753;epname=
 - Set the following environmental variables.
   - A suggested way to do this is to use python venv
   and add the following to the beginning of venv/bin/activate
-  - CLINT_ID & CLIENT_SECRET are from the API Client.
+  - CLINT_ID & CLIENT_SECRET are from the Commerce API Client.
   - SMART_ACCOUNT and VIRTUAL_ACCOUNT numeric ID's can be found in the url by browsing to software.cisco.com ->
   Manage Smart Account -> Virtual Accounts. 
   For example (https://software.cisco.com/software/csws/smartaccount/virtualAccounts/123456/editVA/456789)
