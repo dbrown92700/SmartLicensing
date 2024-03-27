@@ -1,12 +1,16 @@
 # Overview
 This script automates offline licensing for routers using Smart Licensing Using Policy using the Cisco Commerce API
-## Feature Documentation
+
+# Reference Information
+### Feature Documentation
 - Documentation: Configure Smart Licensing Using Policy on Cisco IOS XE Routers \
 Router not Connected to the CSSM and Without CSLU in Place \
 https://www.cisco.com/c/en/us/support/docs/ios-nx-os-software/ios-xe-17/217046-configure-smart-licensing-using-policy-o.html#toc-hId--721390126
 
-## Manual (Non-automated) Steps
-Configure Device and generate RUM report:
+### Manual (Non-automated) Steps
+For reference, these are the manual steps that the script is emulating.
+
+1. Configure Device and generate RUM report:
 ~~~
 Device(config)# license smart transport off
 Device# license smart save usage all file bootflash:all_rum.txt 
@@ -16,36 +20,47 @@ or...from Linux
 
 scp -O admin@10.1.2.3://all_rum.txt all_rum.txt
 ~~~
-Upload to CSSM.  Download Acknowledgement report. Upload to device. Apply ack to device:
+2. Upload to CSSM.
+3. Download Acknowledgement report.
+4. Upload ack to device.
+5. Apply ack to device:
 ~~~
 scp -O ack_usage.txt admin@10.1.2.3://ack_usage.txt
 Device# license smart import bootflash:ack_usage.txt 
 ~~~
 
-# Commerce API Documentation
+### Commerce API Documentation
 
 https://apidocs-prod.cisco.com/ \
+
 Upload RUM API: \
 https://apidocs-prod.cisco.com/explore;category=6083723a25042e9035f6a753;epname=6083723b25042e9035f6a779;apiendpt=6419cdf54bef6e61d5f2b11b
+
 Download API: \
 https://apidocs-prod.cisco.com/explore;category=6083723a25042e9035f6a753;epname=6083723b25042e9035f6a779;apiendpt=6419cdf54bef6e61d5f2b116
 
 
-## Script Setup
+# Script Setup
 - Clone Repository
 > git clone https://github.com/dbrown92700/SmartLicensing
 - Use a Python venv. In the SmartLicensing directory 
 > python -m venv venv
 - Install python requirements
 > pip install -r requirements.txt
-- Create an app account on the Commerce API website.  Under the Console tab, "Create API Client".  App Type: Native.  Redirect URL: anything.
-Associate APIs: add all.  You can restrict API's, but I haven't tested that.
-- Set the following environmental variables. A suggested way to do this is to use python venv
-and add the following to the beginning of venv/bin/activate
-- CLINT_ID & CLIENT_SECRET are from the API Client.
-- SMART_ACCOUNT and VIRTUAL_ACCOUNT numeric ID's can be found in the url by browsing to software.cisco.com ->
-Manage Smart Account -> Virtual Accounts. 
-For example (https://software.cisco.com/software/csws/smartaccount/virtualAccounts/123456/editVA/456789)
+- Create an app account on the Commerce API website.
+  - Under the Console tab, "Create API Client".
+  - App Type: Native.
+  - Redirect URL: anything.
+  - Associate APIs: add all.  You can restrict API's, but I haven't tested that.
+
+
+- Set the following environmental variables.
+  - A suggested way to do this is to use python venv
+  and add the following to the beginning of venv/bin/activate
+  - CLINT_ID & CLIENT_SECRET are from the API Client.
+  - SMART_ACCOUNT and VIRTUAL_ACCOUNT numeric ID's can be found in the url by browsing to software.cisco.com ->
+  Manage Smart Account -> Virtual Accounts. 
+  For example (https://software.cisco.com/software/csws/smartaccount/virtualAccounts/123456/editVA/456789)
 ~~~
 # ENVIRONMENT VARIABLES ADDITIONS FOR SMART LICENSE SCRIPT
 export CLIENT_ID='1111111-2222222-333333333'
