@@ -1,5 +1,7 @@
 # Overview
-This script automates offline licensing for routers using Smart Licensing Using Policy using the Cisco Commerce API
+This script automates offline licensing for routers using Smart Licensing Using Policy using the Cisco Commerce API.
+If you supply router credentials, the script will log into the router to generate a RUM report, upload it to CSSM,
+retrieve the response and apply it to the router.
 
 # Reference Information
 ### Feature Documentation
