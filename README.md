@@ -50,6 +50,13 @@ https://apidocs-prod.cisco.com/explore;category=6083723a25042e9035f6a753;epname=
 > source venv/bin/activate
 - Install python requirements
 > pip install -r requirements.txt
+- Request access to the commerce API:
+  - From: https://apidocs-prod.cisco.com/explore
+  - Navigate to "Smart Accounts & Licensing API"
+  - Navigate to "Smart Licensing Using Policy"
+  - "Access Request"
+  - Repeat for "Smart Accounts" (not strictly needed, but this is included in the code for simple testing purposes)
+  - Proceed to the next step once access is granted
 - Create an app account on the Commerce API website.
   - Under the Console tab, "Create API Client".
   - App Type: Native.

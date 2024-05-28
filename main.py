@@ -63,9 +63,9 @@ if __name__ == '__main__':
 
     if cli_args.address:
         router = Router(cli_args.address, cli_args.user, cli_args.password)
-        print(f'Router status: {router.status}')
+        print(f'\n\nRouter status: {router.status}')
         result = get_rum(router_ip=router, local_file='all_rum.txt')
-        print(f'RUM Download: {result}')
+        print(f'\n\nRUM Download: {result}')
 
     portal = SmartLicensePortal(client_id=client_id, client_secret=client_secret, cco_username=cco_username,
                                 cco_password=cco_password, sa_domain=sa_domain)
@@ -87,12 +87,12 @@ if __name__ == '__main__':
 
     # Upload RUM file to CSSM
     report.create_rum_payload()
-    print(f'\nRUM Payload:\n\n{report.upload_payload}')
+    print(f'\n\nRUM Payload:\n\n{report.upload_payload}')
 
     response = portal.api_call(portal.Urls.reportUsage['method'], portal.Urls.reportUsage['url'],
                                payload=report.upload_payload, headers=headers)
 
-    print(f'RESPONSE:\n{response}:{response.text}')
+    print(f'\n\nRESPONSE:\n\n{response}:{response.text}')
 
     # Retrieve RUM Authorization and save to file
     report.create_poll_payload(json.loads(response.text))
@@ -100,7 +100,7 @@ if __name__ == '__main__':
         # Poll for complete status
         response = portal.api_call(portal.Urls.poll['method'], portal.Urls.poll['url'], payload=report.poll_payload,
                                    headers=headers)
-        print(f'AUTH:\n{response}:{response.text}')
+        print(f'\n\nAUTH POLL:\n{response}:{response.text}')
         j_response = json.loads(response.text)
         if j_response['status'] == 'COMPLETE':
             break
@@ -112,5 +112,5 @@ if __name__ == '__main__':
     # Upload ACK to router
     if cli_args.address:
         result = send_ack(router, 'ack_usage.txt')
-        print(f'Acknowledge apply: {result}')
+        print(f'\n\nACK APPLY:\n\n{result}')
         router.disconnect()
