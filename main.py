@@ -114,7 +114,7 @@ if __name__ == '__main__':
         # Import a device SLAC Request file
         report = SlacReport()
         report.read_file('slac.txt')
-        report.create_slac_req_payload()
+        report.create_slac_req_payload(virtual_account=virtual_account)
 
         headers = report.virtual_account_header(smart_account=smart_account, virtual_account=virtual_account,
                                                 udi_pid=report.sys_info['sudi']['udi_pid'],

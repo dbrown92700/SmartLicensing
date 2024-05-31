@@ -35,7 +35,7 @@ class SlacReport:
 
         return headers
 
-    def create_slac_req_payload(self):
+    def create_slac_req_payload(self, virtual_account=''):
 
         self.sys_info = json.loads(self.slac_req_json['smartLicense']['smartLicenseSystemInfo']['data'])
         self.auth_reqeust = json.loads(self.slac_req_json['smartLicense']['smartLicenseAuthRequest']['data'])
@@ -44,6 +44,8 @@ class SlacReport:
             "data": {
                 "timestamp": self.sys_info['timestamp'],
                 "nonce": self.sys_info['nonce'],
+                "license_pool_id": virtual_account,
+                "device_type": "DNA On Prem",
                 "licenses": [
                     {
                         "sudi": self.auth_reqeust[0]['sudi'],
