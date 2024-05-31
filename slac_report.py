@@ -66,6 +66,6 @@ class SlacReport:
                 "nonce": slac_response['nonce'],
                 "poll_id": slac_response['poll_id'],
                 "type": "authorizations",
-                "action": "acknowledgements"
+                "action": "authorizations"
             }
         }
