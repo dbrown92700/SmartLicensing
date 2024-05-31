@@ -1,6 +1,5 @@
 import json
 import xmltodict
-from time import time
 
 
 class RumReport:
@@ -31,13 +30,6 @@ class RumReport:
             'X-CSW-SMART-ACCOUNT-ID': smart_account,
             'X-CSW-VIRTUAL-ACCOUNT-ID': virtual_account
         }
-        # headers = {
-        #     'Accept': '*/*',
-        #     'Content-type': 'application/json',
-        #     'X-CSW-REQUESTING-SYSTEM': 'PYTHON_SCRIPT',
-        #     'X-CSW-SMART-ACCOUNT-ID': smart_account,
-        #     'X-CSW-VIRTUAL-ACCOUNT-ID': virtual_account
-        # }
 
         return headers
 

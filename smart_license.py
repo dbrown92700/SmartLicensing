@@ -6,6 +6,7 @@ class SmartLicensePortal:
     class Urls:
         accounts = {'method': 'GET', 'url': '/smart-accounts-and-licensing/v2/accounts'}
         reportUsage = {'method': 'POST', 'url': '/smart-accounts-and-licensing/v2/devices/reportusage'}
+        requestAuthCode = {'method': 'POST', 'url': '/smart-accounts-and-licensing/v2/devices/authrequest'}
         poll = {'method': 'POST', 'url': '/smart-accounts-and-licensing/v2/accounts/poll'}
 
     def __init__(self, client_id, client_secret, cco_username, cco_password, sa_domain):
