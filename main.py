@@ -24,7 +24,7 @@ virtual_account = os.getenv('VIRTUAL_ACCOUNT')
 
 def get_slac_request(router_ip: Router, local_file='slac.txt'):
 
-    cmd_result = router_ip.send_command('license smart authorization request add hseck9 local')
+    cmd_result = router_ip.send_command('license smart authorization request replace hseck9 local 1')
     if cmd_result != '':
         return 'Failed to issue "add hseck9" command'
     cmd_result = router_ip.send_command('license smart authorization request save bootflash:slac.txt')
@@ -115,7 +115,6 @@ if __name__ == '__main__':
         report = SlacReport()
         report.read_file('slac.txt')
         report.create_slac_req_payload(virtual_account=virtual_account)
-        print(f'\n{json.dumps(report.upload_payload, indent=2)}\n')
 
         headers = report.virtual_account_header(smart_account=smart_account, virtual_account=virtual_account,
                                                 udi_pid=report.sys_info['sudi']['udi_pid'],
@@ -123,7 +122,7 @@ if __name__ == '__main__':
                                                 hostname=report.sys_info['hostname'])
 
         # Upload SLAC Request to CSSM
-        print(f'\n\n  SLAC Request Payload:\n\n{report.upload_payload}')
+        print(f'\n\n  SLAC Request Payload:\n\n{json.dumps(report.upload_payload, indent=2)}')
         response = portal.api_call(portal.Urls.requestAuthCode['method'], portal.Urls.requestAuthCode['url'],
                                    payload=report.upload_payload, headers=headers)
 
