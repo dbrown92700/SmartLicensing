@@ -44,7 +44,7 @@ class SlacReport:
             "data": {
                 "timestamp": self.sys_info['timestamp'],
                 "nonce": self.sys_info['nonce'],
-                "license_pool_id": virtual_account,
+                "license_pool_id": int(virtual_account),
                 "device_type": "DNA On Prem",
                 "licenses": [
                     {
