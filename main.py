@@ -115,6 +115,7 @@ if __name__ == '__main__':
         report = SlacReport()
         report.read_file('slac.txt')
         report.create_slac_req_payload(virtual_account=virtual_account)
+        print(f'\n{json.dumps(report.upload_payload, indent=2)}\n')
 
         headers = report.virtual_account_header(smart_account=smart_account, virtual_account=virtual_account,
                                                 udi_pid=report.sys_info['sudi']['udi_pid'],
