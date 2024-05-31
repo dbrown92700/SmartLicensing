@@ -140,7 +140,7 @@ if __name__ == '__main__':
             if j_response['status'] == 'COMPLETE':
                 break
             time.sleep(10)
-        ack = base64.b64decode(j_response['data']['acknowledgements'][0]['smart_license']).decode()
+        ack = base64.b64decode(j_response['data']['authorizations'][0]['smart_license']).decode()
         with open('ack_slac.txt', 'w') as file:
             file.write(ack)
 
