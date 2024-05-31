@@ -27,7 +27,7 @@ def get_slac_request(router_ip: Router, local_file='slac.txt'):
     cmd_result = router_ip.send_command('license smart authorization request add hseck9 local')
     if cmd_result != '':
         return 'Failed to issue "add hseck9" command'
-    cmd_result = router_ip.send_command('license smart authorization request save bootflash:slac.txt local')
+    cmd_result = router_ip.send_command('license smart authorization request save bootflash:slac.txt')
     if cmd_result != '':
         return 'Failed to issue "add hseck9" command'
     try:
