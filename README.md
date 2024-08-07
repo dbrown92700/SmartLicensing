@@ -7,6 +7,10 @@ Note that for hardware routers, the SLAC process must be completed before the th
 the SLAC workflow before you can set DNA Advantage Tier 2 or above license.  After you have completed these steps you can complete
 the RUM workflow.  See "Before you begin" in Configuring a Tier-Based Throughput: https://www.cisco.com/c/en/us/td/docs/routers/cloud_edge/c8300/software_config/cat8300swcfg-xe-17-book/m-available-licenses.html#configuring-a-tier-based-throughput
 
+# Release Notes
+
+Latest code has been modified to remove the need for CCO credentials for the App.  If the App is set up in the commerce API portal as type "Native", CCO credentials must be specified. If it's set up as type "API," they are not needed.  If it's type "Native" as the instructions previously specified, CCO credentials are needed. 
+
 # Reference Information
 ### Feature Documentation
 Documentation: Configure Smart Licensing Using Policy on Cisco IOS XE Routers\
@@ -74,7 +78,7 @@ https://apidocs-prod.cisco.com/explore;category=6083723a25042e9035f6a753;epname=
   - Proceed to the next step once access is granted
 - Create an app account on the Commerce API website.
   - Under the Console tab, "Create API Client".
-  - App Type: Native.
+  - App Type: API (recommended)
   - Redirect URL: anything.
   - Associate APIs: add all.  You can restrict API's, but I haven't tested that.
 
@@ -86,15 +90,17 @@ https://apidocs-prod.cisco.com/explore;category=6083723a25042e9035f6a753;epname=
   - SMART_ACCOUNT and VIRTUAL_ACCOUNT numeric ID's can be found in the url by browsing to software.cisco.com ->
   Manage Smart Account -> Virtual Accounts. 
   For example (https://software.cisco.com/software/csws/smartaccount/virtualAccounts/123456/editVA/456789)
+  - CCO_USERNAME and CCO_PASSWORD are not needed if the App type is specified as "API" in the Commerce API Portal
 ~~~
 # ENVIRONMENT VARIABLES ADDITIONS FOR SMART LICENSE SCRIPT
 export CLIENT_ID='1111111-2222222-333333333'
 export CLIENT_SECRET='11111111-2222222-3333333'
-export CCO_USERNAME='your_username'
-export CCO_PASSWORD='your_password'
 export SA_DOMAIN='your-smart-account-domain.com'
 export SMART_ACCOUNT='123456'
 export VIRTUAL_ACCOUNT='456789'
+# Add the following if the App Type is "Native" in the Commerce API Portal. Not needed for Type "API"
+# export CCO_USERNAME='your_username'
+# export CCO_PASSWORD='your_password'
 ~~~
 # Usage
 If you supply a router ID and credentials, the script will log into the router, generate a RUM report, SCP to a local

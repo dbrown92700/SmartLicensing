@@ -12,6 +12,8 @@ import base64
 
 # Set environment variables prior to executing
 # See readme.md for details
+# Note: if APP is set up in commerce API portal as Type API or web, CCO Username and Password are not needed
+#       CCO credentials are needed for Type Native
 
 client_id = os.getenv('CLIENT_ID')
 client_secret = os.getenv('CLIENT_SECRET')
